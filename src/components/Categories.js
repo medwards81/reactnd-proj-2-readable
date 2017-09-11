@@ -19,7 +19,7 @@ class Categories extends Component {
               (category, idx) =>
                 <Link
                   key={idx}
-                  to={`/categories/${category.path}`}
+                  to={`/categories/${category.path}/posts`}
                   className="btn btn-default btn-sm">{category.name}
                 </Link>
               )

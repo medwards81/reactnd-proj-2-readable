@@ -58,10 +58,6 @@ body, .app {
 
 /* main content */
 
-.main {
-	/*margin: 70px 40px;*/
-}
-
 /* Categories */
 
 .categories > span {
@@ -71,6 +67,20 @@ body, .app {
 .categories .btn {
   margin: 5px;
   text-transform: lowercase;
+}
+
+/* Posts view */
+
+.sort-form {
+	padding: 15px 0;
+}
+
+.sort-wrapper {
+	float: right
+}
+
+.sort-wrapper select {
+	margin: 0 0 0 5px;
 }
 
 /* Add a Post */
