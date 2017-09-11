@@ -1,0 +1,98 @@
+html, body, .root {
+  height: 100%;
+}
+
+body {
+  line-height: 1.5;
+}
+
+body, .app {
+  background: white;
+}
+
+/* Page not found */
+
+.page-not-found {
+  margin: 2em auto;
+  text-align: center;
+  color: #999;
+}
+
+/* site header */
+
+.site-header {
+  padding: 10px 0;
+  background: #001f3f;
+  text-align: left;
+	overflow: hidden;
+  /*position: fixed;*/
+  width: 100%;
+  height: 70px;
+  /*top: 0;*/
+	z-index: 9999;
+}
+
+.site-header h1 {
+  font-weight: 400;
+  margin: 0 0 0 10px;
+  color: white;
+	display: flex;
+	align-items: center;
+	text-align: center;
+}
+
+.site-header a {
+	text-decoration: none;
+}
+
+.logo-text {
+  background: #fff;
+  margin-right: 5px;
+  font-size: 50px;
+  color: #001f3f;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #fff;
+  line-height: 50px;
+}
+
+/* main content */
+
+.main {
+	/*margin: 70px 40px;*/
+}
+
+/* Categories */
+
+.categories > span {
+  font-weight: 600;
+}
+
+.categories .btn {
+  margin: 5px;
+  text-transform: lowercase;
+}
+
+/* Add a Post */
+
+.add-post {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+}
+
+.add-post a {
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #2ECC40;
+  background-image: url('./icons/add.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 28px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  font-size: 0;
+}
