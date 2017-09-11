@@ -4,7 +4,7 @@ import Header from './Header'
 import Categories from './Categories'
 import AddPost from './AddPost'
 import PageNotFound from './PageNotFound'
-import * as PostsAPI from './utils/PostsAPI'
+import * as PostsAPI from '../utils/PostsAPI'
 import './App.css'
 
 class ReadableApp extends Component {
