@@ -56,8 +56,6 @@ body, .app {
   line-height: 50px;
 }
 
-/* main content */
-
 /* Categories */
 
 .categories > span {
@@ -72,7 +70,8 @@ body, .app {
 /* Posts view */
 
 .sort-form {
-	padding: 15px 0;
+	padding: 0 0 15px 0;
+  margin: 0 0 15px 0;
 }
 
 .sort-wrapper {
@@ -81,6 +80,52 @@ body, .app {
 
 .sort-wrapper select {
 	margin: 0 0 0 5px;
+}
+
+/* Posts */
+.post-wrapper-content {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.post-author {
+  font-style: italic;
+  font-weight: 600;
+  color: #999;
+}
+
+.post-category a,
+.post-category a:hover {
+  color: #888;
+}
+/* Vote Score */
+
+.vote-score-wrapper {
+  display: inline-block;
+  width: 50px;
+  padding: 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #fff;
+  margin-right: 8px;
+}
+
+.vote-score-wrapper svg {
+  cursor: pointer;
+}
+
+.vote-score-up,
+.vote-score-down,
+.vote-score {
+  text-align: center;
+}
+
+.vote-score-up {
+  margin-top: -3px;
+}
+
+.vote-score-down {
+  margin-top: -5px;
 }
 
 /* Add a Post */

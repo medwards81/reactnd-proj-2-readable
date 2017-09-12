@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchPosts, updateSortOrder } from '../actions'
 import sortBy from 'sort-by'
-import VoteScorePost from './VoteScorePost'
+import VoteScore from './VoteScore'
+import TimeAgo from 'react-timeago'
 
 class Posts extends Component {
 
@@ -12,6 +13,7 @@ class Posts extends Component {
   }
 
 	handleSortChange = (value) => {
+    console.log(value)
 		this.props.updateSortOrder(value)
 	}
 
@@ -21,8 +23,8 @@ class Posts extends Component {
 			<div className="sort-wrapper">
 				<label htmlFor="sort-order">Sort by:</label>
 				<select id="sort-order" value={sortOrder} onChange={event => this.handleSortChange(event.target.value)}>
-					<option value="-voteScore">Vote Score</option>
-					<option value="timestamp">Date and Time</option>
+					<option value="-voteScore">Votes</option>
+					<option value="timestamp">Submit Date</option>
 				</select>
 			</div>
 		)
@@ -33,8 +35,20 @@ class Posts extends Component {
 		posts.sort(sortBy(`${sortOrder}`))
 		return posts.map(post =>
 			<li className="list-group-item" key={post.id}>
-				<VoteScorePost id={post.id} />
-				<Link to={`/posts/${post.id}`}>{post.title}</Link>
+        <div className="post-wrapper">
+				    <VoteScore type="post" id={post.id} score={post.voteScore} />
+            <div className="post-wrapper-content">
+				        <div className="post-title">
+                  <Link to={`/posts/${post.id}`}>{post.title}</Link>
+                </div>
+                <div className="post-submitted">
+                  submitted <TimeAgo date={post.timestamp} />  by <span className="post-author">{post.author}</span>
+                </div>
+                <div className="post-category">
+                  <Link to={`/categories/${post.category}/posts`}>{`r/${post.category}`}</Link>
+                </div>
+            </div>
+        </div>
 			</li>
 		);
 	}
@@ -42,7 +56,7 @@ class Posts extends Component {
   render() {
     return (
 			<div>
-				<div className="sort-form panel">
+				<div className="sort-form">
 					<form>
 						{this.renderSortSelect()}
 					</form>
