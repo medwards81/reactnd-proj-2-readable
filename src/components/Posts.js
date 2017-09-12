@@ -1,28 +1,35 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { fetchPosts, updateSortOrder } from '../actions'
+import { fetchPosts, setPostsSortOrder } from '../actions'
 import sortBy from 'sort-by'
 import VoteScore from './VoteScore'
 import TimeAgo from 'react-timeago'
+import PropTypes from 'prop-types'
 
 class Posts extends Component {
+	static propTypes = {
+		category: PropTypes.string
+	}
+
+	static defaultProps = {
+		category: 'ALL'
+	}
 
   componentDidMount() {
 		this.props.fetchPosts(this.props.category)
   }
 
 	handleSortChange = (value) => {
-    console.log(value)
-		this.props.updateSortOrder(value)
+		this.props.setPostsSortOrder(value)
 	}
 
 	renderSortSelect = () => {
-		const { sortOrder } = this.props
+		const { postsSortOrder } = this.props
 		return (
 			<div className="sort-wrapper">
 				<label htmlFor="sort-order">Sort by:</label>
-				<select id="sort-order" value={sortOrder} onChange={event => this.handleSortChange(event.target.value)}>
+				<select id="sort-order" value={postsSortOrder} onChange={event => this.handleSortChange(event.target.value)}>
 					<option value="-voteScore">Votes</option>
 					<option value="timestamp">Submit Date</option>
 				</select>
@@ -45,7 +52,7 @@ class Posts extends Component {
                   submitted <TimeAgo date={post.timestamp} />  by <span className="post-author">{post.author}</span>
                 </div>
                 <div className="post-category">
-                  <Link to={`/categories/${post.category}/posts`}>{`r/${post.category}`}</Link>
+                  <Link to={`/r/${post.category}/posts`}>{`r/${post.category}`}</Link>
                 </div>
             </div>
         </div>
@@ -69,8 +76,8 @@ class Posts extends Component {
   }
 }
 
-function mapStateToProps({ posts, sortOrder }) {
-	return { posts, sortOrder }
+function mapStateToProps({ posts, postsSortOrder }) {
+	return { posts, postsSortOrder }
 }
 
-export default connect(mapStateToProps, { fetchPosts, updateSortOrder })(Posts)
+export default connect(mapStateToProps, { fetchPosts, setPostsSortOrder })(Posts)

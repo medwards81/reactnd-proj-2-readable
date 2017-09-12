@@ -6,7 +6,7 @@ import SortOrderReducer from './sortOrder'
 const rootReducer = combineReducers({
     categories: CategoriesReducer,
 		posts: PostsReducer,
-		sortOrder: SortOrderReducer
+		postsSortOrder: SortOrderReducer
 });
 
 export default rootReducer;

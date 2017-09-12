@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 import Header from './Header'
 import PageNotFound from './PageNotFound'
 import PostsIndex from './PostsIndex'
+import CategoryIndex from './CategoryIndex'
 import './App.css'
 
 class ReadableApp extends Component {
@@ -13,9 +14,7 @@ class ReadableApp extends Component {
 				<div className="main">
           <Switch>
             <Route exact path='/' component={PostsIndex} />
-            <Route path="/categories/:id" render={() => (
-              <div>Category Page</div>
-            )}/>
+            <Route path="/r/:category/posts" component={CategoryIndex} />
             <Route component={PageNotFound} />
           </Switch>
 				</div>

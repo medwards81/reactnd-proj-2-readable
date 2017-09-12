@@ -1,10 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Categories from './Categories'
 import Posts from './Posts'
 import AddPost from './AddPost'
 
-class PostsIndex extends Component {
-	render() {
+const PostsIndex = (props) => {
 		return (
 			<div>
 				<Categories />
@@ -12,7 +11,6 @@ class PostsIndex extends Component {
 				<AddPost />
 			</div>
 		)
-	}
 }
 
 export default PostsIndex

@@ -9,21 +9,23 @@ class Categories extends Component {
 		this.props.fetchCategories()
   }
 
+	renderCategories() {
+		return this.props.categories.map(
+			(category, idx) =>
+				<Link
+					key={idx}
+					to={`/r/${category.path}/posts`}
+					className="btn btn-default btn-sm">{category.name}
+				</Link>
+			)
+	}
+
   render() {
     return (
       <div className="categories panel panel-default">
         <div className="panel-body">
           <span>Categories:</span>
-          {
-            this.props.categories.map(
-              (category, idx) =>
-                <Link
-                  key={idx}
-                  to={`/categories/${category.path}/posts`}
-                  className="btn btn-default btn-sm">{category.name}
-                </Link>
-              )
-          }
+					{this.renderCategories()}
         </div>
       </div>
     )

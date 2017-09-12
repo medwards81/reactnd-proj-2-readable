@@ -67,6 +67,25 @@ body, .app {
   text-transform: lowercase;
 }
 
+/* Category */
+.category-header .category {
+	font-size: 24px;
+	margin-left: 12px;
+}
+
+.category-header .back-arrow {
+	cursor: pointer;
+}
+
+.back-arrow a {
+	text-decoration: none !important;
+	color: #001f3f !important;
+}
+
+.back-arrow svg {
+	vertical-align: sub !important;
+}
+
 /* Posts view */
 
 .sort-form {

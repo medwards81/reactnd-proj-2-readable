@@ -2,7 +2,9 @@ import * as PostsAPI from '../utils/PostsAPI'
 
 export const FETCH_CATEGORIES = 'FETCH_CATEGORIES'
 export const FETCH_POSTS = 'FETCH_POSTS'
-export const UPDATE_SORT_ORDER = 'UPDATE_SORT_ORDER'
+export const SET_POSTS_SORT_ORDER = 'SET_POSTS_SORT_ORDER'
+
+/* Category Actions */
 
 export function fetchCategories() {
   const request = PostsAPI.getCategories()
@@ -12,17 +14,19 @@ export function fetchCategories() {
 	};
 }
 
-export function fetchPosts() {
-  const request = PostsAPI.getPosts()
+/* Post Actions */
+
+export function fetchPosts(category) {
+  const request = PostsAPI.getPosts(category)
 	return {
 			type: FETCH_POSTS,
 			payload: request
 	};
 }
 
-export function updateSortOrder(sortOrder) {
+export function setPostsSortOrder(sortOrder) {
 	return {
-		type: UPDATE_SORT_ORDER,
+		type: SET_POSTS_SORT_ORDER,
 		payload: sortOrder
 	}
 }
