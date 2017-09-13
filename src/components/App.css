@@ -86,7 +86,7 @@ body, .app {
 	vertical-align: sub !important;
 }
 
-/* Posts view */
+/* Posts Index */
 
 .sort-form {
 	padding: 0 0 15px 0;
@@ -102,9 +102,14 @@ body, .app {
 }
 
 /* Posts */
+
 .post-wrapper-content {
   display: inline-block;
   vertical-align: top;
+}
+
+.post-title {
+  font-size: 1.1em;
 }
 
 .post-author {
@@ -114,9 +119,16 @@ body, .app {
 }
 
 .post-category a,
-.post-category a:hover {
-  color: #888;
+.post-category a:hover,
+.post-comments a,
+.post-comments a:hover {
+  color: #777;
 }
+
+.post-comments {
+  font-size: .95em;
+}
+
 /* Vote Score */
 
 .vote-score-wrapper {

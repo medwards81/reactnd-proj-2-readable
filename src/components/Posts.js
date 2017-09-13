@@ -30,7 +30,7 @@ class Posts extends Component {
 			<div className="sort-wrapper">
 				<label htmlFor="sort-order">Sort by:</label>
 				<select id="sort-order" value={postsSortOrder} onChange={event => this.handleSortChange(event.target.value)}>
-					<option value="-voteScore">Votes</option>
+					<option value="-voteScore">Vote Score</option>
 					<option value="timestamp">Submit Date</option>
 				</select>
 			</div>
@@ -39,7 +39,13 @@ class Posts extends Component {
 
 	renderPosts = () => {
 		const { posts, sortOrder } = this.props
+
+		if (!posts.length) {
+			return <li className="list-group-item">No posts found.</li>
+		}
+
 		posts.sort(sortBy(`${sortOrder}`))
+
 		return posts.map(post =>
 			<li className="list-group-item" key={post.id}>
         <div className="post-wrapper">
@@ -49,11 +55,17 @@ class Posts extends Component {
                   <Link to={`/posts/${post.id}`}>{post.title}</Link>
                 </div>
                 <div className="post-submitted">
-                  submitted <TimeAgo date={post.timestamp} />  by <span className="post-author">{post.author}</span>
+                  submitted <TimeAgo date={post.timestamp} />
+									&nbsp;
+									by <span className="post-author">{post.author}</span> in
+									&nbsp;
+									<span className="post-category">
+										<Link to={`/r/${post.category}/posts`}>{`r/${post.category}`}</Link>
+									</span>
                 </div>
-                <div className="post-category">
-                  <Link to={`/r/${post.category}/posts`}>{`r/${post.category}`}</Link>
-                </div>
+								<div className="post-comments">
+								<Link to={`/posts/${post.id}`}>comments</Link>
+								</div>
             </div>
         </div>
 			</li>
