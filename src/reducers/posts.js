@@ -1,5 +1,5 @@
 import {
-	FETCH_POSTS
+	FETCH_POSTS,
 } from '../actions'
 
 export default function(state = [], action) {

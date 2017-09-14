@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import CategoryHeader from './CategoryHeader'
-import Posts from './Posts'
+import PostsList from './PostsList'
 import AddPost from './AddPost'
 
 class CategoryIndex extends Component {
@@ -10,7 +10,7 @@ class CategoryIndex extends Component {
 		return (
 			<div>
 				<CategoryHeader category={category} />
-				<Posts category={category} />
+				<PostsList category={category} />
 				<AddPost />
 			</div>
 		)
