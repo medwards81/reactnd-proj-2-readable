@@ -3,12 +3,14 @@ import CategoriesReducer from './categories';
 import PostsReducer from './posts'
 import SortOrderReducer from './sortOrder'
 import PostCommentsReducer from './postComments'
+import PostVoteScoresReducer from './postVoteScores'
 
 const rootReducer = combineReducers({
     categories: CategoriesReducer,
 		posts: PostsReducer,
 		postsSortOrder: SortOrderReducer,
-		postComments: PostCommentsReducer
+		postComments: PostCommentsReducer,
+    postVoteScores: PostVoteScoresReducer
 });
 
 export default rootReducer;

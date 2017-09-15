@@ -4,6 +4,7 @@ export const FETCH_CATEGORIES = 'FETCH_CATEGORIES'
 export const FETCH_POSTS = 'FETCH_POSTS'
 export const FETCH_POST_COMMENTS = 'FETCH_POST_COMMENTS'
 export const SET_POSTS_SORT_ORDER = 'SET_POSTS_SORT_ORDER'
+export const SUBMIT_VOTE_POST = 'SUBMIT_VOTE_POST'
 
 /* Category Actions */
 
@@ -38,4 +39,12 @@ export function setPostsSortOrder(sortOrder) {
 		type: SET_POSTS_SORT_ORDER,
 		payload: sortOrder
 	}
+}
+
+export function submitVotePost(id, option) {
+  const request = PostsAPI.submitVotePost(id, option)
+  return {
+    type: SUBMIT_VOTE_POST,
+    payload: request
+  }
 }

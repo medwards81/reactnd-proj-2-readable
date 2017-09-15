@@ -24,12 +24,25 @@ export const getPosts = (category) => {
     .then(res => res.json())
 }
 
-export const getPostComments = (id) => 
+export const getPostComments = (id) =>
   fetch(`${apiURL}/posts/${id}/comments`, { headers })
     .then(res => res.json())
 
-
-
+export const submitVotePost = (id, option) =>
+  fetch(`${apiURL}/posts/${id}`, {
+        headers: {
+          ...headers,
+          'Content-Type': 'application/json'
+        },
+        method: 'post',
+        body: JSON.stringify({
+          option: option
+        })
+  })
+    .then(res => res.json())
+    .then(res => ({
+      [res.id]: res.voteScore
+    }))
 
 export const get = (bookId) =>
   fetch(`${apiURL}/books/${bookId}`, { headers })
