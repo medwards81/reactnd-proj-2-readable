@@ -1,11 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import CategoryHeader from './CategoryHeader'
 import PostsList from './PostsList'
 import AddPost from './AddPost'
 
-class CategoryIndex extends Component {
-	render() {
-		const { category } = this.props.match.params
+const CategoryIndex = (props) => {
+		const { category } = props.match.params
 
 		return (
 			<div>
@@ -14,7 +13,6 @@ class CategoryIndex extends Component {
 				<AddPost />
 			</div>
 		)
-	}
 }
 
 export default CategoryIndex

@@ -5,7 +5,7 @@ import sortBy from 'sort-by'
 import PropTypes from 'prop-types'
 import PostsListItem from './PostsListItem'
 
-class Posts extends Component {
+class PostsList extends Component {
 	static propTypes = {
 		category: PropTypes.string
 	}
@@ -15,6 +15,7 @@ class Posts extends Component {
 	}
 
   componentDidMount() {
+		console.log('componentDidMount()')
 		this.props.fetchPosts(this.props.category)
 			.then(action => {
 				action.payload.forEach((post) => {
@@ -25,6 +26,7 @@ class Posts extends Component {
 
 	handleSortChange = (value) => {
 		this.props.setPostsSortOrder(value)
+		this.props.fetchPosts(this.props.category)
 	}
 
 	renderSortSelect = () => {
@@ -34,20 +36,20 @@ class Posts extends Component {
 				<label htmlFor="sort-order">Sort by:</label>
 				<select id="sort-order" value={postsSortOrder} onChange={event => this.handleSortChange(event.target.value)}>
 					<option value="-voteScore">Vote Score</option>
-					<option value="timestamp">Submit Date</option>
+					<option value="timestamp">Submitted</option>
 				</select>
 			</div>
 		)
 	}
 
 	renderPosts = () => {
-		const { posts, sortOrder } = this.props
+		const { posts, postsSortOrder } = this.props
 
 		if (!posts.length) {
 			return <li className="list-group-item">No posts found.</li>
 		}
 
-		posts.sort(sortBy(`${sortOrder}`))
+		posts.sort(sortBy(postsSortOrder))
 
 		return posts.map(post =>
 			<PostsListItem key={post.id} post={post} />
@@ -74,4 +76,4 @@ function mapStateToProps({ posts, postsSortOrder, postComments }) {
 	return { posts, postsSortOrder, postComments }
 }
 
-export default connect(mapStateToProps, { fetchPosts, setPostsSortOrder, fetchPostComments })(Posts)
+export default connect(mapStateToProps, { fetchPosts, setPostsSortOrder, fetchPostComments })(PostsList)

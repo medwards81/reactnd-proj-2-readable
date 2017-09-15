@@ -4,6 +4,7 @@ import Header from './Header'
 import PageNotFound from './PageNotFound'
 import PostsIndex from './PostsIndex'
 import CategoryIndex from './CategoryIndex'
+import PostDetails from './PostDetails'
 import './App.css'
 
 class ReadableApp extends Component {
@@ -15,6 +16,7 @@ class ReadableApp extends Component {
           <Switch>
             <Route exact path='/' component={PostsIndex} />
             <Route path="/r/:category/posts" component={CategoryIndex} />
+						<Route path="/posts/:id" component={PostDetails} />
             <Route component={PageNotFound} />
           </Switch>
 				</div>
