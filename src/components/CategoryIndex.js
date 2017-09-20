@@ -1,7 +1,6 @@
 import React from 'react'
 import CategoryHeader from './CategoryHeader'
 import PostsList from './PostsList'
-import AddPost from './AddPost'
 
 const CategoryIndex = (props) => {
 		const { category } = props.match.params
@@ -10,7 +9,6 @@ const CategoryIndex = (props) => {
 			<div>
 				<CategoryHeader category={category} />
 				<PostsList category={category} />
-				<AddPost />
 			</div>
 		)
 }

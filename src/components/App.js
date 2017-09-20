@@ -10,7 +10,7 @@ import './App.css'
 class ReadableApp extends Component {
   render() {
     return (
-      <div className="app container-fluid">
+      <div className="app container">
 				<Header />
 				<div className="main">
           <Switch>
