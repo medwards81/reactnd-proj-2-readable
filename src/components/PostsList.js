@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchPosts, setPostsSortOrder, fetchPostComments } from '../actions'
+import { fetchPosts, setPostsSortOrder, fetchPostComments, setCurrentCategory } from '../actions'
 import sortBy from 'sort-by'
 import PropTypes from 'prop-types'
 import PostsListItem from './PostsListItem'
@@ -15,13 +15,13 @@ class PostsList extends Component {
 	}
 
   componentDidMount() {
-		console.log('componentDidMount()')
 		this.props.fetchPosts(this.props.category)
 			.then(action => {
 				action.payload.forEach((post) => {
 					this.props.fetchPostComments(post.id)
 				})
 			})
+		this.props.setCurrentCategory(this.props.category)
   }
 
 	handleSortChange = (value) => {
@@ -36,7 +36,7 @@ class PostsList extends Component {
 				<label htmlFor="sort-order">Sort by:</label>
 				<select id="sort-order" value={postsSortOrder} onChange={event => this.handleSortChange(event.target.value)}>
 					<option value="-voteScore">Vote Score</option>
-					<option value="timestamp">Submitted</option>
+					<option value="timestamp">Newest</option>
 				</select>
 			</div>
 		)
@@ -76,4 +76,4 @@ function mapStateToProps({ posts, postsSortOrder, postComments }) {
 	return { posts, postsSortOrder, postComments }
 }
 
-export default connect(mapStateToProps, { fetchPosts, setPostsSortOrder, fetchPostComments })(PostsList)
+export default connect(mapStateToProps, { fetchPosts, setPostsSortOrder, fetchPostComments, setCurrentCategory })(PostsList)

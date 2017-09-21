@@ -31,7 +31,7 @@ class PostListItem extends Component {
 								</div>
 								<div className="post-comments">
 									{ postComments.length
-										? <Link to={`/posts/${post.id}`}>{postComments.length} comments</Link>
+										? <Link to={`/posts/${post.id}`}>{postComments.length} {postComments.length > 1 ? 'comments' : 'comment'}</Link>
 										: '0 comments'
 									}
 								</div>

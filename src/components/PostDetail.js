@@ -4,46 +4,47 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import PostVoteScore from './PostVoteScore'
 import TimeAgo from 'react-timeago'
+import CommentsList from './CommentsList'
+import { setCurrentPost, fetchPostDetailComments } from '../actions'
 
 class PostListItem extends Component {
 	static propTypes = {
 		post: PropTypes.object.isRequired
 	}
 
+	componentDidMount() {
+		this.props.setCurrentPost(this.props.post.id)
+		this.props.fetchPostDetailComments(this.props.post.id)
+	}
+
 	render() {
-		const { post, postComments } = this.props
+		const { post } = this.props
 		return (
-			<li className="list-group-item" key={post.id}>
-				<div className="post-wrapper">
-						<PostVoteScore type="post" id={post.id} score={post.voteScore} />
-						<div className="post-wrapper-content">
-								<div className="post-title">
-									<Link to={`/posts/${post.id}`}>{post.title}</Link>
-								</div>
-								<div className="post-submitted">
-									submitted <TimeAgo date={post.timestamp} />
-									&nbsp;
-									by <span className="post-author">{post.author}</span> to
-									&nbsp;
-									<span className="post-category">
-										<Link to={`/r/${post.category}/posts`}>{`r/${post.category}`}</Link>
-									</span>
-								</div>
-								<div className="post-comments">
-									{ postComments.length
-										? <Link to={`/posts/${post.id}`}>{postComments.length} comments</Link>
-										: '0 comments'
-									}
-								</div>
-						</div>
+			<div className="panel panel-default">
+				<div className="panel-body">
+					<div className="post-wrapper">
+							<PostVoteScore type="post" id={post.id} score={post.voteScore} />
+							<div className="post-wrapper-content">
+									<div className="post-title-details">{post.title}</div>
+									<div className="post-submitted">
+										submitted <TimeAgo date={post.timestamp} />
+										&nbsp;
+										by <span className="post-author">{post.author}</span> to
+										&nbsp;
+										<span className="post-category">
+											<Link to={`/r/${post.category}/posts`}>{`r/${post.category}`}</Link>
+										</span>
+									</div>
+							</div>
+							<div className="post-details-body">
+								{post.body}
+							</div>
+					</div>
 				</div>
-			</li>
+				<CommentsList postId={this.props.post.id} />
+			</div>
 		)
 	}
 }
 
-function mapStateToProps({ postComments }, ownProps) {
-	return { postComments: postComments.filter(comment => comment.parentId === ownProps.post.id) }
-}
-
-export default connect(mapStateToProps)(PostListItem)
+export default connect(null, { setCurrentPost, fetchPostDetailComments })(PostListItem)

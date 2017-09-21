@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PageNotFound from './PageNotFound'
 import { fetchPostDetails, fetchPostComments } from '../actions'
+import PostDetailHeader from './PostDetailHeader'
 import PostDetail from './PostDetail'
 
 class PostDetails extends Component {
@@ -19,16 +20,18 @@ class PostDetails extends Component {
 
 		return (
 			<div>
-					<PostDetail post={postDetails} />
+					<PostDetailHeader currentCategory={this.props.currentCategory} />
+					<PostDetail post={postDetails} postComments={postComments} />
 			</div>
 		)
 	}
 }
 
-function mapStateToProps({ postDetails, postComments }) {
+function mapStateToProps({ postDetails, postComments, currentCategory }) {
 	return {
 		postDetails,
-		postComments
+		postComments,
+		currentCategory
 	}
 }
 

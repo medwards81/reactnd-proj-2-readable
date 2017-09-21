@@ -2,7 +2,7 @@ import React from 'react'
 import CategoryHeader from './CategoryHeader'
 import PostsList from './PostsList'
 
-const CategoryIndex = (props) => {
+const CategoryIndex = (props) =>  {
 		const { category } = props.match.params
 
 		return (

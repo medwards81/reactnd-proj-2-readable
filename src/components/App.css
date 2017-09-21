@@ -113,6 +113,16 @@ body, .app {
   font-size: 1.2em;
 }
 
+.post-title-details {
+	font-size: 1.5em;
+	color: #001f3f;
+}
+
+.post-details-body {
+	font-size: 1.1em;
+	margin-top: 1em;
+}
+
 .post-author {
   font-style: italic;
   font-weight: 600;
