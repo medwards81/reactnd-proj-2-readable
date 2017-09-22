@@ -5,7 +5,7 @@ export const FETCH_POSTS = 'FETCH_POSTS'
 export const FETCH_POST_DETAILS = 'FETCH_POST_DETAILS'
 export const FETCH_POST_COMMENTS = 'FETCH_POST_COMMENTS'
 export const SET_POSTS_SORT_ORDER = 'SET_POSTS_SORT_ORDER'
-export const SUBMIT_VOTE_POST = 'SUBMIT_VOTE_POST'
+export const SUBMIT_VOTE = 'SUBMIT_VOTE'
 export const SET_CURRENT_CATEGORY = 'SET_CURRENT_CATEGORY'
 export const SET_COMMENTS_SORT_ORDER = 'SET_COMMENTS_SORT_ORDER'
 export const SET_CURRENT_POST = 'SET_CURRENT_POST'
@@ -54,10 +54,10 @@ export function setPostsSortOrder(sortOrder) {
 	}
 }
 
-export function submitVotePost(id, option) {
-  const request = PostsAPI.submitVotePost(id, option)
+export function submitVote(id, type, option) {
+  const request = PostsAPI.submitVote(id, type, option)
   return {
-    type: SUBMIT_VOTE_POST,
+    type: SUBMIT_VOTE,
     payload: request
   }
 }

@@ -1,29 +1,17 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import PostVoteScore from './PostVoteScore'
+import VoteScore from './VoteScore'
 import TimeAgo from 'react-timeago'
 import CommentsList from './CommentsList'
-import { setCurrentPost, fetchPostDetailComments } from '../actions'
 
-class PostListItem extends Component {
-	static propTypes = {
-		post: PropTypes.object.isRequired
-	}
-
-	componentDidMount() {
-		this.props.setCurrentPost(this.props.post.id)
-		this.props.fetchPostDetailComments(this.props.post.id)
-	}
-
-	render() {
-		const { post } = this.props
+const PostListItem = (props) => {
+		const { post } = props
 		return (
 			<div className="panel panel-default">
-				<div className="panel-body">
+				<div className="panel-body" style={{marginBottom:'20px'}}>
 					<div className="post-wrapper">
-							<PostVoteScore type="post" id={post.id} score={post.voteScore} />
+							<VoteScore type="post" id={post.id} score={post.voteScore} />
 							<div className="post-wrapper-content">
 									<div className="post-title-details">{post.title}</div>
 									<div className="post-submitted">
@@ -41,10 +29,13 @@ class PostListItem extends Component {
 							</div>
 					</div>
 				</div>
-				<CommentsList postId={this.props.post.id} />
+				<CommentsList postId={post.id} />
 			</div>
 		)
-	}
 }
 
-export default connect(null, { setCurrentPost, fetchPostDetailComments })(PostListItem)
+PostListItem.propTypes = {
+	post: PropTypes.object.isRequired
+}
+
+export default PostListItem

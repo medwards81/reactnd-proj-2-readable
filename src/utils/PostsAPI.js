@@ -32,8 +32,8 @@ export const getPostComments = (id) =>
   fetch(`${apiURL}/posts/${id}/comments`, { headers })
     .then(res => res.json())
 
-export const submitVotePost = (id, option) =>
-  fetch(`${apiURL}/posts/${id}`, {
+export const submitVote = (id, type, option) =>
+  fetch(`${apiURL}/${type}/${id}`, {
         headers: {
           ...headers,
           'Content-Type': 'application/json'
@@ -47,6 +47,10 @@ export const submitVotePost = (id, option) =>
     .then(res => ({
       [res.id]: res.voteScore
     }))
+
+
+
+
 
 export const get = (bookId) =>
   fetch(`${apiURL}/books/${bookId}`, { headers })

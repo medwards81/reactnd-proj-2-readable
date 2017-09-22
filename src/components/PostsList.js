@@ -36,7 +36,7 @@ class PostsList extends Component {
 				<label htmlFor="sort-order">Sort by:</label>
 				<select id="sort-order" value={postsSortOrder} onChange={event => this.handleSortChange(event.target.value)}>
 					<option value="-voteScore">Vote Score</option>
-					<option value="timestamp">Newest</option>
+					<option value="-timestamp">Newest</option>
 				</select>
 			</div>
 		)

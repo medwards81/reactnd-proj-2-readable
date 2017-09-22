@@ -1,38 +1,39 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PageNotFound from './PageNotFound'
-import { fetchPostDetails, fetchPostComments } from '../actions'
+import { fetchPostDetails, fetchPostDetailComments, setCurrentPost } from '../actions'
 import PostDetailHeader from './PostDetailHeader'
 import PostDetail from './PostDetail'
 
 class PostDetails extends Component {
 	componentDidMount() {
 		const { id } = this.props.match.params
-
 		this.props.fetchPostDetails(id)
-		this.props.fetchPostComments(id)
+		this.props.fetchPostDetailComments(id)
+		this.props.setCurrentPost(id)
 	}
 
 	render () {
-		const { postDetails, postComments } = this.props
+		const { postDetails, currentCategory } = this.props
 
 		if (!postDetails.id) return <PageNotFound />
 
 		return (
 			<div>
-					<PostDetailHeader currentCategory={this.props.currentCategory} />
-					<PostDetail post={postDetails} postComments={postComments} />
+					<PostDetailHeader currentCategory={currentCategory} />
+					<PostDetail post={postDetails} />
 			</div>
 		)
 	}
 }
 
-function mapStateToProps({ postDetails, postComments, currentCategory }) {
+function mapStateToProps({ postDetails, currentCategory, currentPost, fetchPostDetailComments }) {
 	return {
 		postDetails,
-		postComments,
-		currentCategory
+		currentCategory,
+		currentPost,
+		fetchPostDetailComments
 	}
 }
 
-export default connect(mapStateToProps, { fetchPostDetails, fetchPostComments })(PostDetails)
+export default connect(mapStateToProps, { fetchPostDetails, fetchPostDetailComments, setCurrentPost })(PostDetails)

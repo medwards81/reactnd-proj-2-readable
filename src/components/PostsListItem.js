@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import PostVoteScore from './PostVoteScore'
+import VoteScore from './VoteScore'
 import TimeAgo from 'react-timeago'
 
 class PostListItem extends Component {
@@ -15,7 +15,7 @@ class PostListItem extends Component {
 		return (
 			<li className="list-group-item" key={post.id}>
 				<div className="post-wrapper">
-						<PostVoteScore type="post" id={post.id} score={post.voteScore} />
+						<VoteScore type="posts" id={post.id} score={post.voteScore} />
 						<div className="post-wrapper-content">
 								<div className="post-title">
 									<Link to={`/posts/${post.id}`}>{post.title}</Link>
