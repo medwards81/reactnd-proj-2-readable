@@ -3,7 +3,7 @@ import CaretUp from 'react-icons/lib/fa/caret-up'
 import CaretDown from 'react-icons/lib/fa/caret-down'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { submitVote } from '../actions'
+import { submitVote, fetchPostDetailComments, fetchPosts } from '../actions'
 
 class VoteScore extends Component {
 	static propTypes = {
@@ -19,8 +19,12 @@ class VoteScore extends Component {
 	}
 
 	handleVote = (option) => {
-		console.log('option', option)
-		this.props.submitVote(this.props.id, this.props.type, option)
+		const { id, type, submitVote, fetchPostDetailComments, currentPost, currentCategory } = this.props
+		submitVote(id, type, option)
+			.then(() => {
+				if (type === 'comments') fetchPostDetailComments(currentPost)
+				else if (type === 'posts') this.props.fetchPosts(currentCategory)
+			})
 	}
 
 	render() {
@@ -46,10 +50,12 @@ class VoteScore extends Component {
 	}
 }
 
-function mapStateToProps({ voteScores }, ownProps) {
+function mapStateToProps({ voteScores, currentPost, currentCategory }, ownProps) {
 	return {
-		voteScoreModified: voteScores[ownProps.id]
+		voteScoreModified: voteScores[ownProps.id],
+		currentPost,
+		currentCategory
 	}
 }
 
-export default connect (mapStateToProps, { submitVote })(VoteScore)
+export default connect (mapStateToProps, { submitVote, fetchPostDetailComments, fetchPosts })(VoteScore)

@@ -17,7 +17,7 @@ export const getCategories = () =>
     .then(data => data.categories)
 
 export const getPosts = (category) => {
-	const url = (typeof categor !== undefined && category !== 'ALL')
+	const url = (typeof category !== undefined && category !== 'ALL')
 		? `${apiURL}/${category}/posts`
 		: `${apiURL}/posts`
   return fetch(url, { headers })

@@ -5,7 +5,7 @@ import VoteScore from './VoteScore'
 import TimeAgo from 'react-timeago'
 import CommentsList from './CommentsList'
 
-const PostListItem = (props) => {
+const PostDetail = (props) => {
 		const { post } = props
 		return (
 			<div className="panel panel-default">
@@ -34,8 +34,8 @@ const PostListItem = (props) => {
 		)
 }
 
-PostListItem.propTypes = {
+PostDetail.propTypes = {
 	post: PropTypes.object.isRequired
 }
 
-export default PostListItem
+export default PostDetail

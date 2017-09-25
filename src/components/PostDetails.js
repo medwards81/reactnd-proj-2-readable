@@ -7,6 +7,7 @@ import PostDetail from './PostDetail'
 
 class PostDetails extends Component {
 	componentDidMount() {
+		console.log('mounting PostDetails')
 		const { id } = this.props.match.params
 		this.props.fetchPostDetails(id)
 		this.props.fetchPostDetailComments(id)
@@ -27,12 +28,10 @@ class PostDetails extends Component {
 	}
 }
 
-function mapStateToProps({ postDetails, currentCategory, currentPost, fetchPostDetailComments }) {
+function mapStateToProps({ postDetails, currentCategory }) {
 	return {
 		postDetails,
-		currentCategory,
-		currentPost,
-		fetchPostDetailComments
+		currentCategory
 	}
 }
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import VoteScore from './VoteScore'
 import TimeAgo from 'react-timeago'
 
-class PostListItem extends Component {
+class CommentListItem extends Component {
 	static propTypes = {
 		comment: PropTypes.object.isRequired
 	}
@@ -30,4 +30,4 @@ class PostListItem extends Component {
 	}
 }
 
-export default PostListItem
+export default CommentListItem

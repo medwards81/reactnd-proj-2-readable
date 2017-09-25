@@ -121,7 +121,7 @@ body, .app {
 .post-details-body {
 	margin-top: 1em;
 	border-radius: 4px;
-	border: 1px solid #001f3f;
+	border: 1px solid #ddd;
 	padding: 15px;
 }
 
