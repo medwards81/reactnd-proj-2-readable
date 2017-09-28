@@ -48,6 +48,16 @@ export const submitVote = (id, type, option) =>
       [res.id]: res.voteScore
     }))
 
+	export const updatePost = (id, data) =>
+	  fetch(`${apiURL}/posts/${id}`, {
+	    method: 'PUT',
+	    headers: {
+	      ...headers,
+	      'Content-Type': 'application/json'
+	    },
+	    body: JSON.stringify(data)
+	  }).then(res => res.json())
+
 
 
 

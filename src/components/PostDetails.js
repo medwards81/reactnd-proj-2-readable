@@ -7,7 +7,6 @@ import PostDetail from './PostDetail'
 
 class PostDetails extends Component {
 	componentDidMount() {
-		console.log('mounting PostDetails')
 		const { id } = this.props.match.params
 		this.props.fetchPostDetails(id)
 		this.props.fetchPostDetailComments(id)

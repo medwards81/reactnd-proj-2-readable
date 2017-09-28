@@ -10,6 +10,9 @@ export const SET_CURRENT_CATEGORY = 'SET_CURRENT_CATEGORY'
 export const SET_COMMENTS_SORT_ORDER = 'SET_COMMENTS_SORT_ORDER'
 export const SET_CURRENT_POST = 'SET_CURRENT_POST'
 export const FETCH_POST_DETAIL_COMMENTS = 'FETCH_POST_DETAIL_COMMENTS'
+export const OPEN_POST_MODAL = 'OPEN_POST_MODAL'
+export const CLOSE_POST_MODAL = 'CLOSE_POST_MODAL'
+export const UPDATE_POST = 'UPDATE_POST'
 
 /* Category Actions */
 
@@ -89,4 +92,27 @@ export function fetchPostDetailComments(id) {
 			type: FETCH_POST_DETAIL_COMMENTS,
 			payload: request
 	};
+}
+
+export function openPostModal() {
+	return {
+		type: OPEN_POST_MODAL,
+		payload: true
+	}
+}
+
+export function closePostModal() {
+	return {
+		type: CLOSE_POST_MODAL,
+		payload: false
+	}
+}
+
+export function updatePost(id, data, callback) {
+	const request = PostsAPI.updatePost(id, data)
+		.then(() => callback())
+	return {
+		type: UPDATE_POST,
+		payload: request
+	}
 }

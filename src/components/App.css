@@ -143,6 +143,13 @@ body, .app {
 	color: #777;
 }
 
+.edit-post {
+	position: absolute;
+	top: 10px;
+	right: 20px;
+	cursor: pointer;
+}
+
 /* Comments */
 
 .comment-body {
@@ -206,4 +213,57 @@ body, .app {
   background-size: 28px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   font-size: 0;
+}
+
+/* Modal */
+.mod-overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+.mod-content {
+  position: absolute;
+  top: 40px;
+  left: 200px;
+  right: 200px;
+  bottom: 40px;
+  border: 1px solid rgb(204, 204, 204);
+  background: rgb(255, 255, 255);
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+  padding: 20px;
+  border-radius: 3px;
+  box-shadow: 0 3px 8px 0 rgba(0,0,0,.24), 0 3px 12px 0 rgba(0,0,0,.12);
+  min-width: 300px;
+	max-height: 350px 
+}
+
+/* bootstrap overrides */
+.btn-primary {
+	background-color: #001f3f !important;
+	border-color: #001f3f !important;
+}
+
+.btn-primary:hover {
+	background-color: #001f3f !important;
+	border-color: #001f3f !important;
+}
+
+.btn-danger {
+	background-color: #c9302c !important;
+	border-color: #ac2925 !important;
+}
+
+.form-cancel-btn {
+	background-color: #fff !important;
+	border-color: #ccc !important;
+}
+
+.has-danger {
+	color: #d44950;
 }

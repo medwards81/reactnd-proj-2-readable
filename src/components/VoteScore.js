@@ -7,7 +7,7 @@ import { submitVote, fetchPostDetailComments, fetchPosts } from '../actions'
 
 class VoteScore extends Component {
 	static propTypes = {
-		type: PropTypes.string.isRequired,
+		type: PropTypes.oneOf(['posts','comments']).isRequired,
 		score: PropTypes.number,
 		color: PropTypes.string,
 		size: PropTypes.number,
