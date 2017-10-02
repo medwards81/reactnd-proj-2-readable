@@ -21,7 +21,7 @@ class PostListItem extends Component {
 									<Link to={`/posts/${post.id}`}>{post.title}</Link>
 								</div>
 								<div className="post-submitted">
-									submitted <TimeAgo date={post.timestamp} />
+									submitted <TimeAgo date={post.timestamp} live={false} />
 									&nbsp;
 									by <span className="post-author">{post.author}</span> to
 									&nbsp;

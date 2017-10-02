@@ -8,27 +8,29 @@ import Edit from 'react-icons/lib/fa/edit'
 import Delete from 'react-icons/lib/fa/trash-o'
 import Modal from 'react-modal'
 import { connect } from 'react-redux'
-import { openPostModal, closePostModal } from '../actions'
+import { openPostModal, closePostModal, deletePost } from '../actions'
 import PostForm from './PostForm'
-import { fetchCategories } from '../actions'
 
 class PostDetail extends Component {
-
-	componentDidMount() {
-		this.props.fetchCategories()
-  }
-
-	openEditPostModal = (post) => {
-		this.props.openPostModal()
+	openEditPostModal = () => {
+		this.props.openPostModal(true)
 	}
 
 	closeEditPostModal = () => {
-		this.props.closePostModal()
+		this.props.closePostModal(true)
+	}
+
+	deletePost({id}, currentCategory) {
+		this.props.deletePost(id, () => {
+			if (currentCategory !== 'ALL') this.props.history.push(`/r/${currentCategory}/posts`)
+			else this.props.history.push('/')
+		})
 	}
 
 	render() {
 		const { post } = this.props
-		const { isPostModalOpen, categories } = this.props
+		const { isPostModalOpen, currentCategory } = this.props
+
 		return (
 			<div>
 				<div className="panel panel-default">
@@ -52,8 +54,8 @@ class PostDetail extends Component {
 								</div>
 						</div>
 						<div className="edit-post">
-							<Edit onClick={() => this.openEditPostModal(post)} size={16} style={{color:'#001f3f'}} />
-							<Delete size={17} style={{color:'#001f3f',marginTop:'-2px',marginLeft:'2px'}} />
+							<span title="edit post"><Edit onClick={() => this.openEditPostModal()} size={16} style={{color:'#001f3f'}} /></span>
+							<span title="delete post"><Delete onClick={() => this.deletePost(post, currentCategory)} size={17} style={{color:'#001f3f',marginTop:'-2px',marginLeft:'2px'}} /></span>
 						</div>
 					</div>
 					<CommentsList postId={post.id} />
@@ -66,7 +68,7 @@ class PostDetail extends Component {
 					onRequestClose={this.closeEditPostModal}
 					contentLabel='Modal'
 				>
-					<PostForm categories={categories} editPost={post} />
+					{isPostModalOpen && <PostForm editPost={post} />}
 				</Modal>
 
 		</div>
@@ -78,11 +80,11 @@ PostDetail.propTypes = {
 	post: PropTypes.object.isRequired
 }
 
-const mapStateToProps = ({ isPostModalOpen, categories }) => {
+const mapStateToProps = ({ isPostModalOpen, currentCategory }) => {
 	return {
 		isPostModalOpen,
-		categories
+		currentCategory
 	}
 }
 
-export default connect(mapStateToProps, { openPostModal, closePostModal, fetchCategories })(PostDetail)
+export default connect(mapStateToProps, { openPostModal, closePostModal, deletePost })(PostDetail)

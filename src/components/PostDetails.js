@@ -21,7 +21,7 @@ class PostDetails extends Component {
 		return (
 			<div>
 					<PostDetailHeader currentCategory={currentCategory} />
-					<PostDetail post={postDetails} />
+					<PostDetail post={postDetails} history={this.props.history} />
 			</div>
 		)
 	}

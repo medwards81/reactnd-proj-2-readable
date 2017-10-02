@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchPosts, setPostsSortOrder, fetchPostComments, setCurrentCategory } from '../actions'
+import { fetchPosts, setPostsSortOrder, fetchPostComments, setCurrentCategory, fetchCategories } from '../actions'
 import sortBy from 'sort-by'
 import PropTypes from 'prop-types'
 import PostsListItem from './PostsListItem'
+import { openPostModal, closePostModal } from '../actions'
+import PostForm from './PostForm'
+import Modal from 'react-modal'
 
 class PostsList extends Component {
 	static propTypes = {
@@ -15,13 +18,16 @@ class PostsList extends Component {
 	}
 
   componentDidMount() {
-		this.props.fetchPosts(this.props.category)
+		const { categories, category, fetchCategories, setCurrentCategory, fetchPosts, fetchPostComments } = this.props
+
+		if (! categories.length) fetchCategories()
+		setCurrentCategory(category)
+		fetchPosts(category)
 			.then(action => {
 				action.payload.forEach((post) => {
-					this.props.fetchPostComments(post.id)
+					fetchPostComments(post.id)
 				})
 			})
-		this.props.setCurrentCategory(this.props.category)
   }
 
 	handleSortChange = (value) => {
@@ -29,10 +35,24 @@ class PostsList extends Component {
 		this.props.fetchPosts(this.props.category)
 	}
 
+	openPostModal = () => {
+		this.props.openPostModal()
+	}
+
+	closePostModal = () => {
+		this.props.closePostModal()
+	}
+
 	renderSortSelect = () => {
 		const { postsSortOrder } = this.props
 		return (
 			<div className="sort-wrapper">
+				<button
+					type="button"
+					className="btn btn-sm btn-primary add-post-btn"
+					onClick={() => this.openPostModal()}
+				>Add Post</button>
+				&nbsp;
 				<label htmlFor="sort-order">Sort by:</label>
 				<select id="sort-order" value={postsSortOrder} onChange={event => this.handleSortChange(event.target.value)}>
 					<option value="-voteScore">Vote Score</option>
@@ -57,6 +77,8 @@ class PostsList extends Component {
 	}
 
   render() {
+		const { isNewPostModalOpen, categories, category } = this.props
+
     return (
 			<div>
 				<div className="sort-form">
@@ -64,16 +86,45 @@ class PostsList extends Component {
 						{this.renderSortSelect()}
 					</form>
 				</div>
-				<ul className="list-group">
+				<ul className="list-group" style={{marginTop:'30px'}}>
 					{this.renderPosts()}
 				</ul>
+				<Modal
+					className='mod-content'
+					overLayClassName='mod-overlay'
+					isOpen={isNewPostModalOpen}
+					onRequestClose={this.closePostModal}
+					contentLabel='Modal'
+				>
+					{isNewPostModalOpen && <PostForm categories={categories} currentCategory={category} />}
+				</Modal>
 			</div>
     )
   }
 }
 
-function mapStateToProps({ posts, postsSortOrder, postComments }) {
-	return { posts, postsSortOrder, postComments }
+function mapStateToProps({
+	posts,
+	postsSortOrder,
+	postComments,
+	isPostModalOpen,
+	categories
+}) {
+	return {
+		posts,
+		postsSortOrder,
+		postComments,
+		categories,
+		isNewPostModalOpen: isPostModalOpen,
+	}
 }
 
-export default connect(mapStateToProps, { fetchPosts, setPostsSortOrder, fetchPostComments, setCurrentCategory })(PostsList)
+export default connect(mapStateToProps, {
+	fetchPosts,
+	setPostsSortOrder,
+	fetchPostComments,
+	setCurrentCategory,
+	openPostModal,
+	closePostModal,
+	fetchCategories
+ })(PostsList)

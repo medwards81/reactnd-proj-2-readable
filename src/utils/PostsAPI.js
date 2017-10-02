@@ -1,3 +1,4 @@
+import uuidv1 from 'uuid/v1'
 
 const apiURL = 'http://localhost:3001'
 
@@ -48,47 +49,38 @@ export const submitVote = (id, type, option) =>
       [res.id]: res.voteScore
     }))
 
-	export const updatePost = (id, data) =>
-	  fetch(`${apiURL}/posts/${id}`, {
-	    method: 'PUT',
-	    headers: {
-	      ...headers,
-	      'Content-Type': 'application/json'
-	    },
-	    body: JSON.stringify(data)
-	  }).then(res => res.json())
-
-
-
-
-
-export const get = (bookId) =>
-  fetch(`${apiURL}/books/${bookId}`, { headers })
-    .then(res => res.json())
-    .then(data => data.book)
-
-export const getAll = () =>
-  fetch(`${apiURL}/books`, { headers })
-    .then(res => res.json())
-    .then(data => data.books)
-
-export const update = (book, shelf) =>
-  fetch(`${apiURL}/books/${book.id}`, {
+export const updatePost = (id, data) =>
+  fetch(`${apiURL}/posts/${id}`, {
     method: 'PUT',
     headers: {
       ...headers,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ shelf })
+    body: JSON.stringify(data)
   }).then(res => res.json())
 
-export const search = (query, maxResults) =>
-  fetch(`${apiURL}/search`, {
+export const createPost = (data) => {
+	const { title, body, author, category  } = data
+	var reqData = {
+		id: uuidv1(),
+		timestamp: Date.now(),
+		title,
+		body,
+		author,
+		category
+	}
+	return fetch(`${apiURL}/posts`, {
     method: 'POST',
     headers: {
       ...headers,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ query, maxResults })
+    body: JSON.stringify(reqData)
   }).then(res => res.json())
-    .then(data => data.books)
+}
+
+export const deletePost = (id) =>
+  fetch(`${apiURL}/posts/${id}`, {
+    method: 'DELETE',
+    headers: { ...headers }
+  }).then(res => res)

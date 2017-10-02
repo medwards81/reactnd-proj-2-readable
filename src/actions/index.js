@@ -13,6 +13,8 @@ export const FETCH_POST_DETAIL_COMMENTS = 'FETCH_POST_DETAIL_COMMENTS'
 export const OPEN_POST_MODAL = 'OPEN_POST_MODAL'
 export const CLOSE_POST_MODAL = 'CLOSE_POST_MODAL'
 export const UPDATE_POST = 'UPDATE_POST'
+export const CREATE_POST = 'CREATE_POST'
+export const DELETE_POST = 'DELETE_POST'
 
 /* Category Actions */
 
@@ -113,6 +115,24 @@ export function updatePost(id, data, callback) {
 		.then(() => callback())
 	return {
 		type: UPDATE_POST,
+		payload: request
+	}
+}
+
+export function createPost(data, callback) {
+	const request = PostsAPI.createPost(data)
+		.then(() => callback())
+	return {
+		type: CREATE_POST,
+		payload: request
+	}
+}
+
+export function deletePost(id, callback) {
+	const request = PostsAPI.deletePost(id)
+		.then(() => callback())
+	return {
+		type: DELETE_POST,
 		payload: request
 	}
 }

@@ -7,7 +7,7 @@ const CategoryHeader = (props) => {
     <div className="category-header panel panel-default">
       <div className="panel-body">
 				<span className="back-arrow">
-					<Link to="/" title="Back">
+					<Link to="/" title="back">
 						<ArrowLeft size={20} />
 					</Link>
 				</span>
