@@ -6,18 +6,18 @@ This project depends on an extenal api server to feed content.  Please follow th
 
 ## TL;DR
 
-### Install and launch the api server:
+### 1. Install and launch the api server:
 
 * download or fork and clone the [starter server repository](https://github.com/udacity/reactnd-project-readable-starter)
 * install the project dependencies with `npm install`
 * run the server with `node server`
 
-2) Launch the Readable app:
+### 2. Launch the Readable app:
 
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
 * open [http://localhost:3000/](http://localhost:3000/) in your browser
 
-### Create React App
+## Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). You can find more information on how to perform common tasks [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
