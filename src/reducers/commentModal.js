@@ -1,13 +1,13 @@
 import {
-	CLOSE_POST_MODAL,
-	OPEN_POST_MODAL
+	CLOSE_COMMENT_MODAL,
+	OPEN_COMMENT_MODAL
 } from '../actions'
 
 export default function(state = false, action) {
 	switch(action.type) {
-		case CLOSE_POST_MODAL:
+		case CLOSE_COMMENT_MODAL:
 			return false
-		case OPEN_POST_MODAL:
+		case OPEN_COMMENT_MODAL:
 			return true
 		default:
 			return state

@@ -10,6 +10,8 @@ import CommentSortOrderReducer from './commentSortOrder'
 import CurrentPostReducer from './currentPost'
 import PostDetailCommentsReducer from './postDetailComments'
 import PostModalReducer from './postModal'
+import CommentModalReducer from './commentModal'
+import CurrentCommentEditReducer from './currentCommentEdit'
 import { reducer as formReducer } from 'redux-form'
 
 
@@ -25,7 +27,9 @@ const rootReducer = combineReducers({
 		currentPost: CurrentPostReducer,
 		postDetailComments: PostDetailCommentsReducer,
 		isPostModalOpen: PostModalReducer,
-		form: formReducer 
+		form: formReducer,
+		isCommentModalOpen: CommentModalReducer,
+		currentCommentEdit: CurrentCommentEditReducer
 });
 
 export default rootReducer;

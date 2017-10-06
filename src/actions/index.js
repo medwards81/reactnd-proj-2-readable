@@ -15,6 +15,12 @@ export const CLOSE_POST_MODAL = 'CLOSE_POST_MODAL'
 export const UPDATE_POST = 'UPDATE_POST'
 export const CREATE_POST = 'CREATE_POST'
 export const DELETE_POST = 'DELETE_POST'
+export const OPEN_COMMENT_MODAL = 'OPEN_COMMENT_MODAL'
+export const CLOSE_COMMENT_MODAL = 'CLOSE_COMMENT_MODAL'
+export const CREATE_COMMENT = 'CREATE_COMMENT'
+export const UPDATE_CONMENT = 'UPDATE_CONMENT'
+export const DELETE_COMMENT = 'DELETE_COMMENT'
+export const SET_CURRENT_COMMENT_EDIT = 'SET_CURRENT_COMMENT_EDIT'
 
 /* Category Actions */
 
@@ -134,5 +140,55 @@ export function deletePost(id, callback) {
 	return {
 		type: DELETE_POST,
 		payload: request
+	}
+}
+
+/* Comment actions */
+
+export function openCommentModal() {
+	return {
+		type: OPEN_COMMENT_MODAL,
+		payload: true
+	}
+}
+
+export function closeCommentModal() {
+	return {
+		type: CLOSE_COMMENT_MODAL,
+		payload: false
+	}
+}
+
+export function createComment(data, parentId, callback) {
+	const request = PostsAPI.createComment(data, parentId)
+		.then(() => callback())
+	return {
+		type: CREATE_COMMENT,
+		payload: request
+	}
+}
+
+export function updateComment(id, data, callback) {
+	const request = PostsAPI.updateComment(id, data)
+		.then(() => callback())
+	return {
+		type: UPDATE_CONMENT,
+		payload: request
+	}
+}
+
+export function deleteComment(id, callback) {
+	const request = PostsAPI.deleteComment(id)
+		.then(() => callback())
+	return {
+		type: DELETE_COMMENT,
+		payload: request
+	}
+}
+
+export function setCurrentCommentEdit(comment) {
+	return {
+		type: SET_CURRENT_COMMENT_EDIT,
+		payload: comment
 	}
 }

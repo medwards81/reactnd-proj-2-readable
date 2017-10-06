@@ -24,9 +24,10 @@ class PostsList extends Component {
 		setCurrentCategory(category)
 		fetchPosts(category)
 			.then(action => {
-				action.payload.forEach((post) => {
-					fetchPostComments(post.id)
-				})
+				if (! Array.isArray(action.payload)) return false
+				return action.payload.forEach((post) => {
+						fetchPostComments(post.id)
+					})
 			})
   }
 

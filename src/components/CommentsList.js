@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { setCommentsSortOrder } from '../actions'
+import { setCommentsSortOrder, openCommentModal, closeCommentModal, setCurrentCommentEdit } from '../actions'
 import sortBy from 'sort-by'
 import PropTypes from 'prop-types'
 import CommentListItem from './CommentListItem'
+import CommentForm from './CommentForm'
+import Modal from 'react-modal'
 
 class CommentsList extends Component {
 	static propTypes = {
@@ -14,10 +16,25 @@ class CommentsList extends Component {
 		this.props.setCommentsSortOrder(value)
 	}
 
+	openCommentModal = () => {
+		this.props.setCurrentCommentEdit({})
+		this.props.openCommentModal()
+	}
+
+	closeCommentModal = () => {
+		this.props.closeCommentModal()
+	}
+
 	renderSortSelect = () => {
 		const { commentsSortOrder } = this.props
 		return (
 			<div className="sort-wrapper">
+				<button
+					type="button"
+					className="btn btn-sm btn-primary add-post-btn"
+					onClick={() => this.openCommentModal()}
+				>Add Comment</button>
+				&nbsp;
 				<label htmlFor="sort-order">Sort by:</label>
 				<select id="sort-order" value={commentsSortOrder} onChange={event => this.handleSortChange(event.target.value)}>
 					<option value="-voteScore">Vote Score</option>
@@ -42,7 +59,7 @@ class CommentsList extends Component {
 	}
 
   render() {
-		const { postDetailComments } = this.props
+		const { postDetailComments, isCommentModalOpen, postId } = this.props
     return (
 			<div>
 				<div className="sort-form" style={{padding:'15px'}}>
@@ -51,16 +68,25 @@ class CommentsList extends Component {
 						{this.renderSortSelect()}
 					</form>
 				</div>
-				<ul className="list-group">
+				<ul className="list-group" style={{marginTop:'30px'}}>
 					{this.renderComments()}
 				</ul>
+				<Modal
+					className='mod-content'
+					overLayClassName='mod-overlay'
+					isOpen={isCommentModalOpen}
+					onRequestClose={this.closeCommentModal}
+					contentLabel='Modal'
+				>
+					{isCommentModalOpen && <CommentForm postId={postId} />}
+				</Modal>
 			</div>
     )
   }
 }
 
-function mapStateToProps({ commentsSortOrder, postDetailComments }) {
-	return { commentsSortOrder, postDetailComments }
+function mapStateToProps({ commentsSortOrder, postDetailComments, isCommentModalOpen }) {
+	return { commentsSortOrder, postDetailComments, isCommentModalOpen }
 }
 
-export default connect(mapStateToProps, { setCommentsSortOrder } )(CommentsList)
+export default connect(mapStateToProps, { setCommentsSortOrder, openCommentModal, closeCommentModal, setCurrentCommentEdit } )(CommentsList)
