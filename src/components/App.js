@@ -17,7 +17,7 @@ class ReadableApp extends Component {
             <Route exact path='/' component={PostsIndex} />
             <Route path="/r/:category/posts" component={CategoryIndex} />
 						<Route path="/posts/:id" component={PostDetails} />
-            <Route component={PageNotFound} />
+            <Route component={PostsIndex} />
           </Switch>
 				</div>
       </div>

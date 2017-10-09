@@ -5,7 +5,8 @@ import TimeAgo from 'react-timeago'
 import Edit from 'react-icons/lib/fa/edit'
 import Delete from 'react-icons/lib/fa/trash-o'
 import { connect } from 'react-redux'
-import { deleteComment, fetchPostDetailComments, openCommentModal, setCurrentCommentEdit } from '../actions'
+//import { deleteComment, fetchPostDetailComments, openCommentModal, setCurrentCommentEdit } from '../actions'
+import * as actions from '../actions'
 
 class CommentListItem extends Component {
 	static propTypes = {
@@ -49,4 +50,4 @@ class CommentListItem extends Component {
 	}
 }
 
-export default connect(null, { deleteComment, fetchPostDetailComments, openCommentModal, setCurrentCommentEdit })(CommentListItem)
+export default connect(null, actions)(CommentListItem)

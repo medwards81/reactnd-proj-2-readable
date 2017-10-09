@@ -1,13 +1,10 @@
-import {
-	CLOSE_POST_MODAL,
-	OPEN_POST_MODAL
-} from '../actions'
+import * as types from '../actions/types'
 
 export default function(state = false, action) {
 	switch(action.type) {
-		case CLOSE_POST_MODAL:
+		case types.CLOSE_POST_MODAL:
 			return false
-		case OPEN_POST_MODAL:
+		case types.OPEN_POST_MODAL:
 			return true
 		default:
 			return state

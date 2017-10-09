@@ -1,10 +1,8 @@
-import {
-	FETCH_POST_DETAILS
-} from '../actions'
+import * as types from '../actions/types'
 
 export default function(state = {}, action) {
 	switch(action.type) {
-		case FETCH_POST_DETAILS:
+		case types.FETCH_POST_DETAILS:
 			return {
 				...action.payload
 			}

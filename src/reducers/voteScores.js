@@ -1,10 +1,8 @@
-import {
-	SUBMIT_VOTE
-} from '../actions'
+import * as types from '../actions/types'
 
 export default function(state = {}, action) {
 	switch(action.type) {
-		case SUBMIT_VOTE:
+		case types.SUBMIT_VOTE:
 			return {
         ...state,
 				...action.payload

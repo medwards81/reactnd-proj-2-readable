@@ -1,4 +1,5 @@
 import React from 'react'
+import Categories from './Categories'
 import CategoryHeader from './CategoryHeader'
 import PostsList from './PostsList'
 
